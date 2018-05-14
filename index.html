@@ -1,20 +1,72 @@
 <html>
-    <head></head>
-    <link rel="stylesheet" href="style.css">
-
+    <head>
+            <link rel="stylesheet" href="style.css">
+        
+    </head>
+    
     <body>
-        <div class="row inblock">
+        <div class="row">
                 <div class="col-3"></div>
-            <div class="center col-6">
-                <button class="numberPlate ">CA 944 324</button>
+            <div class="col-6 center">
             </div>
             <div class="col-3"></div>
+        </div>
+        <div class="row">
+                <div class="col-3"></div>
+        
+                <div class="col-6">
+                    <form id="numberPlateForm" action="" onsubmit="return addNumberPlates();">
+                    <input  class='center' id="inputBox" type="console.text" placeholder="Enter number plate here"  pattern="[A-Za-z0-9]+"
+                     title="please enter alphanumeric characters ">
+                </form>
+                </div>
+                <div class="col-3"></div>
+        </div>
+        <div class="row">
+                <div class="col-5"></div>
+                <div class="col-2" id="addBtn" >
+                        <button id="addButton" type="submit" form="numberPlateForm" value="Submit"><strong>Add</strong></button>
+            
+                    </div>
+                    <div class="col-5"></div>
+
+        </div>
+
+        <div class="row">
+            <div class="center col 12">
+
+            Filter by town :     
+            <select>
+                <option value="capetown">CapeTown</option>
+                <option value="malmesbury">Malmesbury</option>
+                <option value="bellville">Bellville</option>
+                
+            </select>
+            <button id='filterButton'>Apply filter </button>
+      
+
+            </div>
 
 
         </div>
+    
+    
+        <div class="row">
+            <div class="col-3"></div>
+
+        <div class="col-6">
+            <ul id="numberPlates" class=" center numberPlates">
+
+            </ul>
+
+        </div>
+        <div class="col-3"></div>
+
+
+    </div>
 
 
 
     </body>
-
+    <script src="registration_number.js" charset="utf-8"></script>
 </html>
