@@ -16,8 +16,8 @@
         
                 <div class="col-6">
                     <form id="numberPlateForm" action="" onsubmit="return addNumberPlates();">
-                    <input  class='center' id="inputBox" type="console.text" placeholder="Enter number plate here" required="required" pattern="[A-Za-z0-9]+" maxlength="10"
-                     title="please enter alphanumeric characters with no spaces">
+                    <input  class='center' id="inputBox" type="console.text" placeholder="Enter number plate here" required="required" pattern="[A-Za-z0-9 ]+" maxlength="10"
+                     title="please only enter alphanumeric characters">
                 </form>
                 </div>
                 <div class="col-3"></div>
@@ -38,10 +38,10 @@
             Filter by town :     
             <select id="townDropD">
                 <option value="alltowns">All Towns</option>
-                <option value="capetown">CapeTown</option>
-                <option value="paarl">Paarl</option>
-                <option value="bellville">Bellville</option>
-                <option value="stellies">Stellenbosch</option>
+                <option value="CA">CapeTown</option>
+                <option value="CJ">Paarl</option>
+                <option value="CY">Bellville</option>
+                <option value="CL">Stellenbosch</option>
                 
             </select>
             <button id='filterButton'>Apply filter </button>
