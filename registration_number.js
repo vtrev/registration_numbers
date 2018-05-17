@@ -2,24 +2,27 @@
 
 var addNumberPlatesFactory = function (platesArray) {
 
-    var platesArray = platesArray;
+    //    var platesArray = platesArray;
     var tmpPlates = platesArray;
     var addPlateElement = function (plate) {
         plate = plate.toUpperCase();
         tmpPlates.push(plate);
+        checkReg();
         localStorage.setItem('regArray', JSON.stringify(tmpPlates));
-    };   
+    };
     var filterFunction = function (town) {
-        var unsortedPlates = JSON.parse(localStorage.getItem('regArray'));
+        var unsortedPlates = platesArray;
+        var holdingArray = [];
         if (town == 'alltowns') {
+            //          
             return unsortedPlates
         } else {
-            var holdingArray = [];
             for (let i = 0; i < unsortedPlates.length; i++) {
                 if (unsortedPlates[i].startsWith(town)) {
                     holdingArray.push(unsortedPlates[i]);
                 }
             }
+
             return holdingArray
         }
     }
@@ -28,23 +31,26 @@ var addNumberPlatesFactory = function (platesArray) {
         addPlateElement,
         filterFunction
     }
-
 }
 
 // ===================DOM===================================
 
 var displayPlates = function (platesArray) {
-    document.getElementById('numberPlates').innerHTML = '';
-    platesArray.reverse();
-    for (var i = 0; i < platesArray.length; i++) {
-        var plate = platesArray[i];
-        plate = plate.toUpperCase();
-        var listItem = document.createElement("li");
-        var plateText = document.createTextNode(plate);
-        listItem.appendChild(plateText);
-        document.getElementById('numberPlates').appendChild(listItem);
-    }
+    if (platesArray.length == 0) {
+        document.getElementById('numberPlates').innerHTML = 'No plates yet';
+    } else {
+        document.getElementById('numberPlates').innerHTML = '';
 
+        platesArray.reverse();
+        for (var i = 0; i < platesArray.length; i++) {
+            var plate = platesArray[i];
+            plate = plate.toUpperCase();
+            var listItem = document.createElement("li");
+            var plateText = document.createTextNode(plate);
+            listItem.appendChild(plateText);
+            document.getElementById('numberPlates').appendChild(listItem);
+        }
+    }
 }
 //check for a redisttration array and create it if null
 var checkReg = function () {
@@ -52,6 +58,9 @@ var checkReg = function () {
         localStorage.setItem('regArray', JSON.stringify([]));
     }
 }
+checkReg();
+var stored = JSON.parse(localStorage.getItem('regArray'));
+displayPlates(stored);
 
 //function to run when the add button is clicked
 var addNumberPlates = function () {
@@ -61,7 +70,6 @@ var addNumberPlates = function () {
     addPlate.addPlateElement(plateElement);
     document.getElementById('inputBox').value = "";
     displayPlates(JSON.parse(localStorage.getItem('regArray')));
-
     return false
 }
 
