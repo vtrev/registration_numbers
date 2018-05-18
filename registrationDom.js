@@ -1,37 +1,3 @@
-// ==================LOGIC==========================
-
-var addNumberPlatesFactory = function (platesArray) {
-
-    //    var platesArray = platesArray;
-    var tmpPlates = platesArray;
-    var addPlateElement = function (plate) {
-        plate = plate.toUpperCase();
-        tmpPlates.push(plate);
-        checkReg();
-        localStorage.setItem('regArray', JSON.stringify(tmpPlates));
-    };
-    var filterFunction = function (town) {
-        var unsortedPlates = platesArray;
-        var holdingArray = [];
-        if (town == 'alltowns') {
-            //          
-            return unsortedPlates
-        } else {
-            for (let i = 0; i < unsortedPlates.length; i++) {
-                if (unsortedPlates[i].startsWith(town)) {
-                    holdingArray.push(unsortedPlates[i]);
-                }
-            }
-
-            return holdingArray
-        }
-    }
-
-    return {
-        addPlateElement,
-        filterFunction
-    }
-}
 
 // ===================DOM===================================
 
@@ -44,7 +10,6 @@ var displayPlates = function (platesArray) {
         platesArray.reverse();
         for (var i = 0; i < platesArray.length; i++) {
             var plate = platesArray[i];
-            plate = plate.toUpperCase();
             var listItem = document.createElement("li");
             var plateText = document.createTextNode(plate);
             listItem.appendChild(plateText);
@@ -67,9 +32,18 @@ var addNumberPlates = function () {
     checkReg();
     var addPlate = addNumberPlatesFactory(JSON.parse(localStorage.getItem('regArray')));
     var plateElement = document.getElementById('inputBox').value;
+    plateElement = plateElement.toUpperCase();
+
+    if(plateElement.startsWith('CA') || plateElement.startsWith('CF') || plateElement.startsWith('CY')|| plateElement.startsWith('CL') ||plateElement.startsWith('CJ')){
     addPlate.addPlateElement(plateElement);
     document.getElementById('inputBox').value = "";
     displayPlates(JSON.parse(localStorage.getItem('regArray')));
+    }else{
+        document.getElementById('numberPlates').innerHTML = 'Please only enter number plates from the available towns on the drop down menu';
+        document.getElementById('inputBox').value = "";
+
+    }
+    
     return false
 }
 
