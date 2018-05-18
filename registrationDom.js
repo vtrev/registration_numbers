@@ -26,6 +26,20 @@ var checkReg = function () {
 checkReg();
 var stored = JSON.parse(localStorage.getItem('regArray'));
 displayPlates(stored);
+//check for numberplate validity
+var validate = function(plateToVadidate){ 
+    if(!JSON.parse(localStorage.getItem('regArray')).includes(plateToVadidate)){
+    plates = ['CA','CF','CY','CJ','CL']
+     //for listItem in plates
+     return plates.some(function(numberplate){
+        return   plateToVadidate.startsWith(numberplate)  
+    });
+    }else{
+        // document.getElementById('numberPlates').innerHTML = 'That numberplate has already been registered to the database';
+
+    } 
+}
+
 
 //function to run when the add button is clicked
 var addNumberPlates = function () {
@@ -34,12 +48,12 @@ var addNumberPlates = function () {
     var plateElement = document.getElementById('inputBox').value;
     plateElement = plateElement.toUpperCase();
 
-    if(plateElement.startsWith('CA') || plateElement.startsWith('CF') || plateElement.startsWith('CY')|| plateElement.startsWith('CL') ||plateElement.startsWith('CJ')){
+    if(validate(plateElement)){
     addPlate.addPlateElement(plateElement);
     document.getElementById('inputBox').value = "";
     displayPlates(JSON.parse(localStorage.getItem('regArray')));
     }else{
-        document.getElementById('numberPlates').innerHTML = 'Please only enter number plates from the available towns on the drop down menu';
+        document.getElementById('numberPlates').innerHTML = 'Please only enter number plates from the available towns on the drop down menu <br> Duplicate entries will be ignored' ;
         document.getElementById('inputBox').value = "";
 
     }

@@ -11,7 +11,7 @@ var addNumberPlatesFactory = function (platesArray) {
     var filterFunction = function (town) {
         var unsortedPlates = platesArray;
         var holdingArray = [];
-        if (town == 'alltowns') {        
+        if (town == 'alltowns') {       
             return unsortedPlates
         } else {
             for (let i = 0; i < unsortedPlates.length; i++) {
