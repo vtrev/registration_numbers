@@ -1,8 +1,6 @@
 // ==================LOGIC==========================
 
-var addNumberPlatesFactory = function (platesArray) {
-   
-    //    var platesArray = platesArray;
+var addNumberPlatesFactory = function (platesArray) {   
     var tmpPlates = platesArray;
     var addPlateElement = function (plate) {
         plate = plate.toUpperCase();
@@ -13,8 +11,7 @@ var addNumberPlatesFactory = function (platesArray) {
     var filterFunction = function (town) {
         var unsortedPlates = platesArray;
         var holdingArray = [];
-        if (town == 'alltowns') {
-            //          
+        if (town == 'alltowns') {        
             return unsortedPlates
         } else {
             for (let i = 0; i < unsortedPlates.length; i++) {
