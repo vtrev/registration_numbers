@@ -2,10 +2,11 @@
 // ===================DOM===================================
 
 var displayPlates = function (platesArray) {
+
     if (platesArray.length == 0) {
         document.getElementById('numberPlates').innerHTML = 'No plates yet';
     } else {
-        document.getElementById('numberPlates').innerHTML = '';
+        document.getElementById('numberPlates').innerHTML = '<h2>Registrations without handlebars</h2>';
 
         platesArray.reverse();
         for (var i = 0; i < platesArray.length; i++) {
@@ -17,6 +18,26 @@ var displayPlates = function (platesArray) {
         }
     }
 }
+
+
+var displayHandlebarPlates = function (platesArray) {    
+    var platesData = {};
+    platesData['plates'] = platesArray;
+
+    console.log(platesData);
+    // platesData.plates = platesArray;
+    if(platesArray.length == 0){
+        platesData.arrayEmpty = true ;
+    }
+
+    var platesDataElement = document.getElementById("regAreaHandlebars");
+    var platesDataTemplateSource = document.getElementById("platesTemplate").innerHTML;
+    var platesTemplate = Handlebars.compile(platesDataTemplateSource);
+    var platesHTML = platesTemplate(platesData);
+    platesDataElement.innerHTML = platesHTML;
+
+}
+
 //check for a redisttration array and create it if null
 var checkReg = function () {
     if (!localStorage.getItem('regArray')) {
@@ -26,6 +47,7 @@ var checkReg = function () {
 checkReg();
 var stored = JSON.parse(localStorage.getItem('regArray'));
 displayPlates(stored);
+displayHandlebarPlates(stored);
 //check for numberplate validity
 var validate = function(plateToVadidate){ 
     if(!JSON.parse(localStorage.getItem('regArray')).includes(plateToVadidate)){
@@ -41,17 +63,22 @@ var validate = function(plateToVadidate){
 }
 
 
+
 //function to run when the add button is clicked
 var addNumberPlates = function () {
     checkReg();
     var addPlate = addNumberPlatesFactory(JSON.parse(localStorage.getItem('regArray')));
     var plateElement = document.getElementById('inputBox').value;
     plateElement = plateElement.toUpperCase();
+    
+
 
     if(validate(plateElement)){
     addPlate.addPlateElement(plateElement);
     document.getElementById('inputBox').value = "";
     displayPlates(JSON.parse(localStorage.getItem('regArray')));
+    displayHandlebarPlates(JSON.parse(localStorage.getItem('regArray')));
+
     }else{
         document.getElementById('numberPlates').innerHTML = 'Please only enter number plates from the available towns on the drop down menu <br> Duplicate entries will be ignored' ;
         document.getElementById('inputBox').value = "";
@@ -63,9 +90,10 @@ var addNumberPlates = function () {
 
 //an event listener for the apply filter button that will run the filter function and display the filtered results
 
-document.getElementById('filterButton').addEventListener('click', function filterPlates() {
+document.getElementById('filterButtonHandlebars').addEventListener('click', function filterPlates() {
     checkReg();
     var addPlate = addNumberPlatesFactory(JSON.parse(localStorage.getItem('regArray')));
     var dropDvalue = document.getElementById('townDropD').value;
     displayPlates(addPlate.filterFunction(dropDvalue));
+    displayHandlebarPlates(addPlate.filterFunction(dropDvalue));
 });

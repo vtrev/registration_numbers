@@ -1,6 +1,21 @@
 <html>
     <head>
             <link rel="stylesheet" href="style.css">
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
+
+            <script type="text/x-template" id="platesTemplate">
+                <div>
+                        {{#if arrayEmpty}}
+                        <p>'No plates yet'</p>
+                        {{else}}
+                            <ul id="numberPlates" class=" center numberPlates">
+                                 {{#each plates}}
+                                      <li>{{this}}</li>
+                                    {{/each}}
+                                  </ul>
+                        {{/if}}
+         <div>
+            </script>
         
     </head>
     
@@ -35,7 +50,7 @@
         <div class="row">
             <div class="center col 12">
 
-            Filter by town :     
+            <!-- Filter by town :     
             <select id="townDropD">
                 <option value="alltowns">All Towns</option>
                 <option value="CA">CapeTown</option>
@@ -44,7 +59,7 @@
                 <option value="CL">Stellenbosch</option>
                 
             </select>
-            <button id='filterButton'>Apply filter </button>
+            <button id='filterButtonHandlebars'>Apply filter </button> -->
       
 
             </div>
@@ -54,16 +69,32 @@
     
     
         <div class="row">
-            <div class="col-3"></div>
+            
 
         <div class="col-6">
-            <h1 id="regArea"></h1>
-            <ul id="numberPlates" class=" center numberPlates">
-
-            </ul>
+                <h2>Registrations with handlebars</h2>
+                Filter by town :     
+                <select id="townDropD">
+                    <option value="alltowns">All Towns</option>
+                    <option value="CA">CapeTown</option>
+                    <option value="CJ">Paarl</option>
+                    <option value="CY">Bellville</option>
+                    <option value="CL">Stellenbosch</option>
+                    
+                </select>
+                <button id='filterButtonHandlebars'>Apply filter </button>
+            
+            <div id = "regAreaHandlebars"></div>
 
         </div>
-        <div class="col-3"></div>
+        <div class="col-6"></div>
+                <h1 id="regArea"></h1>
+                <ul id="numberPlates" class=" center numberPlates">
+    
+                </ul>
+    
+            </div>
+        
 
 
     </div>
