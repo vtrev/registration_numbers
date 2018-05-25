@@ -98,7 +98,12 @@ document.getElementById('filterButton2').addEventListener('click', function filt
 
 document.getElementById('resetButton').addEventListener('click', function run() {
 
-    localStorage.clear();
+    localStorage.setItem('regArray', JSON.stringify([]));
+    document.getElementById('regAreaHandlebars').innerHTML = 'No plates yet';
+    document.getElementById('numberPlates').innerHTML = 'No plates yet';
+
+
+
 })
 
 // =====================================================EOF============================================== //
