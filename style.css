@@ -301,3 +301,12 @@ ul {
 .inline {
   display: inline-block;
 }
+
+#resetButton {
+  border: 2px solid darkslategray;
+  width: 150px;
+  height: 40px;
+  background-color: white;
+  /* background: #333447; */
+  border-radius: 20px;
+}

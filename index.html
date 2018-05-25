@@ -38,21 +38,26 @@
         <div class="col-3"></div>
     </div>
     <div class="row">
-        <div class="col-5"></div>
-        <div class="col-2" id="addBtn">
+        <div class="col-4"></div>
+        <div class="col-4" id="addBtn">
             <button id="addButton" type="submit" form="numberPlateForm" value="Submit">
                 <strong>Add</strong>
             </button>
+            <button id="resetButton">
+                <strong>Reset</strong>
+            </button>
+
+
 
         </div>
-        <div class="col-5"></div>
+        <div class="col-4"></div>
 
     </div>
 
 
     <div class="row">
 
-        <div id="handlebars" class="inline col-6 border">
+        <div id="handlebars" class="inline col-6 border center">
             <h2>Registrations with handlebars</h2>
             Filter by town :
             <select id="townDropD1">
@@ -69,7 +74,7 @@
             <div id="regAreaHandlebars"></div>
 
         </div>
-        <div id="noHandlebars" class=" inline col-6 border">
+        <div id="noHandlebars" class=" inline col-6 border center">
             <h2>Registrations without handlebars</h2>
             Filter by town :
             <select id="townDropD2">
@@ -82,7 +87,7 @@
 
             </select>
             <button id='filterButton2'>Apply filter </button>
-            <ul id="numberPlates" class="center numberPlates"></ul>
+            <ul id="numberPlates" class="numberPlates"></ul>
         </div>
     </div>
     </div>

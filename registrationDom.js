@@ -71,8 +71,11 @@ var addNumberPlates = function () {
         displayHandlebarPlates(JSON.parse(localStorage.getItem('regArray')));
     } else {
         document.getElementById('numberPlates').innerHTML = 'Please only enter number plates from the available towns on the drop down menu <br> Duplicate entries will be ignored';
+        document.getElementById('regAreaHandlebars').innerHTML = 'Please only enter number plates from the available towns on the drop down menu <br> Duplicate entries will be ignored';
+
         document.getElementById('inputBox').value = "";
     }
+    return false
 }
 
 //an event listener for the first filter button with handlebars
@@ -91,5 +94,11 @@ document.getElementById('filterButton2').addEventListener('click', function filt
     let dropDvalue = document.getElementById('townDropD2').value;
     displayPlates(addPlate.filterFunction(dropDvalue));
 });
+
+
+document.getElementById('resetButton').addEventListener('click', function run() {
+
+    localStorage.clear();
+})
 
 // =====================================================EOF============================================== //
