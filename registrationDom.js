@@ -19,10 +19,10 @@ var displayPlates = function (platesArray) {
 //display plates to screen using handlebars
 var displayHandlebarPlates = function (platesArray) {
     var platesData = {};
-    platesData['plates'] = platesArray;
+    platesData['plates'] = platesArray.reverse();
     //condition for empty plate array
     if (platesArray.length == 0) {
-        document.getElementById('numberPlates').innerHTML = 'No plates yet';
+        document.getElementById('regAreaHandlebars').innerHTML = 'No plates yet';
     } else {
         var platesDataElement = document.getElementById("regAreaHandlebars");
         var platesDataTemplateSource = document.getElementById("platesTemplate").innerHTML;
@@ -43,7 +43,7 @@ var checkReg = function () {
 //check for numberplate validity
 var validate = function (plateToVadidate) {
     if (!JSON.parse(localStorage.getItem('regArray')).includes(plateToVadidate)) {
-        plates = ['CA', 'CF', 'CY', 'CJ', 'CL']
+        plates = ['CA ', 'CF ', 'CY ', 'CJ ', 'CL ', 'CAW']
         return plates.some(function (numberplate) {
             return plateToVadidate.startsWith(numberplate)
         });
