@@ -43,7 +43,7 @@ var checkReg = function () {
 //check for numberplate validity
 var validate = function (plateToVadidate) {
     if (!JSON.parse(localStorage.getItem('regArray')).includes(plateToVadidate)) {
-        plates = ['CA ', 'CF ', 'CY ', 'CJ ', 'CL ', 'CAW']
+        plates = ['CA ', 'CY ', 'CJ ', 'CL ', 'CAW']
         return plates.some(function (numberplate) {
             return plateToVadidate.startsWith(numberplate)
         });
